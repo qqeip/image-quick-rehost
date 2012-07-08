@@ -2,13 +2,14 @@ program ImageQuickRehost;
 
 uses
   Vcl.Forms,
-  UntMain in 'UntMain.pas' {Form1};
+  UntMain in 'UntMain.pas' {frmMain};
 
 {$R *.res}
 
 begin
+
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

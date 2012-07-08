@@ -1,4 +1,4 @@
-object Form1: TForm1
+object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'Image Quick Rehost'
@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = #24494#36719#38597#40657
   Font.Style = []
   OldCreateOrder = False
+  Position = poOwnerFormCenter
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -63,6 +64,7 @@ object Form1: TForm1
       Top = 0
       Caption = #31896#36148#22270#20687
       ImageIndex = 1
+      OnClick = btnPasteClick
     end
     object btnSp1: TToolButton
       Left = 110
@@ -77,12 +79,14 @@ object Form1: TForm1
       Top = 0
       Caption = #21024#38500#20219#21153
       ImageIndex = 2
+      OnClick = btnDeleteClick
     end
     object btnClear: TToolButton
       Left = 173
       Top = 0
       Caption = #28165#31354#38431#21015
       ImageIndex = 3
+      OnClick = btnClearClick
     end
     object btnSettings: TToolButton
       Left = 228
@@ -104,6 +108,7 @@ object Form1: TForm1
       Top = 0
       Caption = #20851#20110
       ImageIndex = 5
+      OnClick = btnAboutClick
     end
     object btnQuit: TToolButton
       Left = 346
@@ -135,6 +140,9 @@ object Form1: TForm1
       item
         AutoSize = True
         Caption = #29366#24577
+      end
+      item
+        Caption = #26412#22320#25991#20214
       end>
     ReadOnly = True
     RowSelect = True
@@ -142,9 +150,6 @@ object Form1: TForm1
     TabOrder = 2
     ViewStyle = vsReport
     OnDblClick = lvQueueDblClick
-    ExplicitLeft = -8
-    ExplicitTop = 79
-    ExplicitHeight = 377
   end
   object ilNormal: TImageList
     ColorDepth = cd32Bit
@@ -153,7 +158,7 @@ object Form1: TForm1
     Left = 288
     Top = 288
     Bitmap = {
-      494C010107000800540030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101070008006C0030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C00000006000000001002000000000000020
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2537,13 +2542,21 @@ object Form1: TForm1
       000000000000}
   end
   object muUploader: TclMultiUploader
+    TryCount = 1
+    TimeOut = 30000
     ReconnectAfter = 1000
+    InternetAgent = '!'
     Connection = conUploader
+    OnIsBusyChanged = muUploaderIsBusyChanged
+    MaxStartedItems = 1
+    OnStatusChanged = muUploaderStatusChanged
     OnDataItemProceed = muUploaderDataItemProceed
+    OnError = muUploaderError
+    OnProcessCompleted = muUploaderProcessCompleted
     UploadList = <>
     PublishFileMask = '*.*'
-    Left = 344
-    Top = 296
+    Left = 328
+    Top = 288
   end
   object dlgOpen: TOpenPictureDialog
     Filter = 
@@ -2555,8 +2568,8 @@ object Form1: TForm1
     Top = 288
   end
   object pmToolbar: TPopupMenu
-    Left = 392
-    Top = 304
+    Left = 368
+    Top = 288
     object mniShowCaption: TMenuItem
       AutoCheck = True
       Caption = #26174#31034#26631#39064#25991#23383'(&S)'
@@ -2571,8 +2584,10 @@ object Form1: TForm1
     end
   end
   object Tray: TTrayIcon
+    Hint = 'Image Quick Host'
     PopupMenu = pmTray
     Visible = True
+    OnDblClick = TrayDblClick
     Left = 160
     Top = 288
   end
@@ -2582,6 +2597,7 @@ object Form1: TForm1
     object mniSpeed: TMenuItem
       Caption = #24555#36895#20219#21153'(&S)'
       Default = True
+      OnClick = mniSpeedClick
     end
     object mniSp1: TMenuItem
       Caption = '-'
@@ -2597,8 +2613,8 @@ object Form1: TForm1
   end
   object pmList: TPopupMenu
     OnPopup = pmListPopup
-    Left = 440
-    Top = 304
+    Left = 408
+    Top = 288
     object mniCopy: TMenuItem
       Caption = #22797#21046'URL(&C)'
       Default = True
@@ -2606,7 +2622,7 @@ object Form1: TForm1
     end
   end
   object conUploader: TclInternetConnection
-    Left = 328
-    Top = 368
+    Left = 120
+    Top = 288
   end
 end
