@@ -87,7 +87,7 @@ var
 resourcestring
   defaultUA =
     'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)';
-  defaultHost = 'http://www.imagecraft.tk/api.php';
+  defaultHost = 'http://imagecraft.linuxteam.com/api.php';
 
 implementation
 
